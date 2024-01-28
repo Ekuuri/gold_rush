@@ -37,7 +37,7 @@ else {
 }
 
 function regen_session_id_loggedin() {
-    session_regenerate_id(true);
+    session_regenerate_id();
     $_SESSION["last_regen"] = time();
 
     $userId = $_SESSION["userId"];
@@ -46,6 +46,6 @@ function regen_session_id_loggedin() {
     session_id($sessionId);
 }
 function regen_session_id() {
-    session_regenerate_id(true);
+    session_regenerate_id();
     $_SESSION["last_regen"] = time();
 }

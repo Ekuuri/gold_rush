@@ -1,4 +1,5 @@
 <?php
+require_once("config_session.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -23,9 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         if (isPasswordWrong($password, $result["passwordBcrypt"]) && !isUsernameWrong($result)){
             $errors["passwordWrong"] = "Špatné přihlašovácí údaje!";
-        }
-
-        require_once("config_session.php");
+        } 
 
         if ($errors) {
             $_SESSION["errorsLogIn"] = $errors;
