@@ -23,6 +23,6 @@ class Emerald {
         // EMERALD COUNTER
         ctx.textAlign = 'start';
         ctx.textBaseline = 'alphabetic';
-        ctx.fillText(this.emerald, this.x + 72, this.y + 64)
+        ctx.fillText(formatEmerald(this.emerald), this.x + 72, this.y + 64)
     }
 }

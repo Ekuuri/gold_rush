@@ -229,6 +229,14 @@
                 isMuted = true;
             }
         }
+
+        function formatEmerald(eme) {
+            if (eme < 1e3) return eme;
+            if (eme >= 1e3 && eme < 1e6) return +(eme / 1e3).toFixed(1) + "K";
+            if (eme >= 1e6 && eme < 1e9) return +(eme / 1e6).toFixed(1) + "M";
+            if (eme >= 1e9 && eme < 1e12) return +(eme / 1e9).toFixed(1) + "B";
+            if (eme >= 1e12) return +(eme / 1e12).toFixed(1) + "T";
+        }
     </script>
 </body>
 </html>

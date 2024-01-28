@@ -23,7 +23,7 @@ class Shop {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.font = '25px "Minecraftia", "VT323"';
-        ctx.fillText(this.text + " - " + this.cost, this.x + this.width / 2, this.y + this.height / 2, this.width);
+        ctx.fillText(this.text + " - " + formatEmerald(this.cost), this.x + this.width / 2, this.y + this.height / 2, this.width);
     }
 
     inButton(mouseX, mouseY) {
