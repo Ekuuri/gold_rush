@@ -22,6 +22,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isUsernameTaken($db, $username)) {
             $errors["usernameTaken"] = "Uživelské jméno je již zabrané!";
         }
+        if (isUsernameTooLong($username)) {
+            $errors["usernameTooLong"] = "Uživelské jméno je příliš dlouhé!";
+        }
         if (isEmailRegistered($db, $email)) {
             $errors["emailTaken"] = "E-mailová adresa je již zaregistrovaná!";
         }

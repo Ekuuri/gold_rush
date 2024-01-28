@@ -6,7 +6,9 @@ session_start();
 $id = $_SESSION["userId"];
 $score = $_POST["score"];
 
-setScore($db, $id, $score);
+if ($score > 0) {
+    setScore($db, $id, $score);
+}
 
 session_unset();
 session_destroy();

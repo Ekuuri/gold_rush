@@ -25,7 +25,7 @@ function checkSignUpErrors() {
 }
 
 function signupInputs() {
-    if (isset($_SESSION["signupData"]["username"]) && !isset($_SESSION["errorsSignUp"]["usernameTaken"])) {
+    if (isset($_SESSION["signupData"]["username"]) && !isset($_SESSION["errorsSignUp"]["usernameTaken"]) && !isset($_SESSION["errorsSignUp"]["usernameTooLong"])) {
         echo '<div class="row justify-content-center p-1">';
         echo '<input type="text" name="username" class="form-control w-50" placeholder="Přihlašovací jméno" autofocus value="' . $_SESSION["signupData"]["username"] . '">';
         echo '</div>';

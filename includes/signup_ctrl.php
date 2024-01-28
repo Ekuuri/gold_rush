@@ -29,6 +29,15 @@ function isUsernameTaken(object $db, string $username) {
     }
 }
 
+function isUsernameTooLong(string $username) {
+    if ($username > 12) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function isEmailRegistered(object $db, string $email) {
     if (getEmail($db, $email)) {
         return true;

@@ -21,10 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (isUsernameWrong($result)){
             $errors["usernameWrong"] = "Špatné přihlašovácí údaje!";
-        }
-        if (isPasswordWrong($password, $result["passwordBcrypt"]) && !isUsernameWrong($result)){
-            $errors["passwordWrong"] = "Špatné přihlašovácí údaje!";
         } 
+
+        if (!isUsernameWrong($result) && isPasswordWrong($password, $result["passwordBcrypt"])){
+            $errors["passwordWrong"] = "Špatné přihlašovácí údaje!";
+        }
 
         if ($errors) {
             $_SESSION["errorsLogIn"] = $errors;
