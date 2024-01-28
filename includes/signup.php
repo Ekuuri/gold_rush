@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: ../index.php?signup=success");
 
-        $bd = null;
+        $db = null;
         $stmt = null;
 
         die();

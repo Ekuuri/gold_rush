@@ -73,10 +73,11 @@
     </div>
     <!-- Konec vysouvacího menu-->
 
-    <button class="btn btn-warning position-fixed top-right" style="top:40px" onclick="mute()">Ztlumit zvuky</button>
-    <form action="includes/logout.php">
-        <button class="btn btn-danger position-fixed top-right" type="submit">Odhlásit se</button>
+    <form action="includes/logout.php" method="post">
+        <input type="hidden" name="score" id="emeralds">
+        <button class="btn btn-danger position-fixed top-right" type="submit">Odhlásit se a uložit skóre</button>
     </form>
+    <button class="btn btn-warning position-fixed top-right" style="top:40px" onclick="mute()">Ztlumit zvuky</button> 
 
     <div class="mx-auto text-center pt-3 game-container">
         <canvas id="game" class="border border-black">Váš prohlížeč nepodporuje Canvas tag.</canvas>
@@ -99,6 +100,7 @@
 
         // emerald counter
         var eme = 0;
+        var totaleme = 0;
 
         // ore counter
         var oreLevel = 1;
@@ -177,6 +179,9 @@
 
             // SHOP BUTTONS
             buttons.forEach(button => button.draw(c));
+
+            // aktualizace skore
+            document.getElementById("emeralds").setAttribute('value', totaleme);
         }
         animate()
 
@@ -200,6 +205,7 @@
         setInterval(() => {
             if(childMiners > 0) {
                 eme += 100 * 3 ** childMiners
+                totaleme += 100 * 3 ** childMiners
                 var child = new Audio("img/childMiner.mp3")
                 if (!isMuted)child.play()
             }
@@ -209,6 +215,7 @@
         setInterval(() => {
             if(villMiners > 0) {
                 eme += 350 * 5 ** villMiners
+                totaleme += 350 * 5 ** villMiners
                 var villager = new Audio("img/villMiner.mp3")
                 if (!isMuted)villager.play()
             }

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS score (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
     createdDatetime DATETIME NOT NULL DEFAULT now(),
-    days INT NOT NULL, 										# kolik herních cyklů vytrval ve hře => skóre 
+    result INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
@@ -27,20 +27,20 @@ CREATE VIEW leaderboard AS
 SELECT u.userName, s.*
 FROM score s LEFT JOIN users u
 ON s.userId = u.userId
-ORDER BY s.days DESC; 										# předběžný žebříček pro otestování databáze
+ORDER BY s.result DESC; 										# předběžný žebříček pro otestování databáze
 
 -- testovací hodnoty budou odstraněny ve finální verzi --
 
 insert into users (userName, email, passwordBcrypt, role)
 values ("GM", "tlescenko@gmail.com", 2, "admin");
 
-insert into score (userId, days)
+insert into score (userId, result)
 values (1, 69);
 
 insert into users (userName, email, passwordBcrypt, role)
 values ("QT", "tlescenkos@gmail.com", 3, "admin");
 
-insert into score (userId, days)
+insert into score (userId, result)
 values (2, 1337);
 
 SELECT * FROM leaderboard;
@@ -50,4 +50,3 @@ SELECT * FROM score;
 SELECT * FROM users;
 
 -- konec testovacích hodnot --
-

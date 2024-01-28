@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["last_regen"] = time();
 
         header("Location: ../game.php?login=success");
-        $bd = null;
+        $db = null;
         $stmt = null;
 
         die();
