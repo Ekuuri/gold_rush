@@ -49,7 +49,29 @@
         <input type="hidden" name="score" id="emeralds">
         <button class="btn btn-danger position-fixed top-right" type="submit">Odhlásit se a uložit skóre</button>
     </form>
-    <button class="btn btn-warning position-fixed top-right" style="top:40px" onclick="mute()">Ztlumit zvuky</button> 
+    <button class="btn btn-warning position-fixed end-0" style="top:40px" onclick="mute()">Ztlumit zvuky</button> 
+    <button type="button" class="btn btn-primary position-fixed end-0" style="top:80px" data-bs-toggle="modal" data-bs-target="#tutorial">Tutorial</button>
+
+    <div class="modal fade" id="tutorial" tabindex="-1" aria-labelledby="tutorialLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tutorialLabel">Tutorial</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Cílem hry je získat, co nejvíc měny (ukázána vedle zeleného drahokamu).</p>
+                    <p>Kliknutím (levým myšítkem) kdekoli, krom menu na právé straně obrazovky, vytěžíte rudu na obrázku a získáte měnu.</p>
+                    <p>Kliknutím na jedno ze žlutých tlačítek si zakoupíte zmíněný předmět na tlačítku.</p>
+                    <p>Vylepšení krumpáče a rudy přímo ovlivňují kolik měny získáte každým kliknutím rudy.</p>
+                    <p>Zaměstnáním vesničanů začnete získávat měnu automaticky každých několik sekund (indikováno zvukovým efektem).</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="mx-auto text-center pt-3 game-container">
         <canvas id="game" class="border border-black">Váš prohlížeč nepodporuje Canvas tag.</canvas>
@@ -89,7 +111,7 @@
         // upgrade buttons
         var buttons = [];
 
-        var pickaxeUpgrade = new Shop({x: 600, y: 100, cost: 25, text: "Upgrade pickaxe!"});
+        var pickaxeUpgrade = new Shop({x: 600, y: 100, cost: 25, text: "Vylepšit krumpáč!"});
         pickaxeUpgrade.onClick = () => {
             if (pickLevel == 6) {
                 pickaxeUpgrade.isButtonEnabled = false;
@@ -99,7 +121,7 @@
         }
         buttons.push(pickaxeUpgrade);
 
-        var oreUpgrade = new Shop({x: 600, y: 190, cost: 100, text: "Upgrade ore!"});
+        var oreUpgrade = new Shop({x: 600, y: 190, cost: 100, text: "Vylepšit rudu!"});
         oreUpgrade.onClick = () => {
             if (oreLevel == 5) {
                 oreUpgrade.isButtonEnabled = false;
@@ -109,14 +131,14 @@
         }
         buttons.push(oreUpgrade);
 
-        var childBuy = new Shop({x: 600, y: 280, cost: 1000, text: "Employ a Village Child!"});
+        var childBuy = new Shop({x: 600, y: 280, cost: 1000, text: "Zaměstnat vesnické dítě!"});
         childBuy.onClick = () => {
             childBuy.buy()
             childMiners++
         }
         buttons.push(childBuy);
 
-        var villBuy = new Shop({x: 600, y: 370, cost: 3500, text: "Employ an Old Miner!"});
+        var villBuy = new Shop({x: 600, y: 370, cost: 3500, text: "Zaměstnat starého horníka!"});
         villBuy.onClick = () => {
             villBuy.buy()
             villMiners++
