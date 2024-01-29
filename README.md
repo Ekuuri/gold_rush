@@ -11,4 +11,3 @@ Features to add:
 
 Known bugs:
 - Logging out when cookie expires
-- Buttons responsive after running out of upgrades

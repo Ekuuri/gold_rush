@@ -33,5 +33,10 @@ class Shop {
     buy() {
         eme -= this.cost;
         this.cost = Math.floor(5 * this.cost + 500)
+
+        if (!this.isButtonEnabled) {
+            this.fillColor = "#D5A300";
+            this.text = "Max Level Reached!";
+        }
     }
 }
