@@ -10,6 +10,8 @@ if ($score > 0) {
     setScore($db, $id, $score);
 }
 
+setcookie("save", '', 1, "/gold_rush");
+
 session_unset();
 session_destroy();
 

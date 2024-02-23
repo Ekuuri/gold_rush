@@ -30,7 +30,7 @@ function isUsernameTaken(object $db, string $username) {
 }
 
 function isUsernameTooLong(string $username) {
-    if ($username > 12) {
+    if (strlen($username) > 12) {
         return true;
     }
     else {

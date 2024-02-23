@@ -152,13 +152,13 @@
         var tutorial = 0;
         var tutorials = [];
 
-        var clickTutorial = new Tutorial({x: 578 / 2, y: 579 / 2, clicks: 25, text: "Klikej!"})
+        var clickTutorial = new Tutorial({x: 578 / 2, y: 579 / 2, text: "Klikej!"})
         tutorials.push(clickTutorial);
 
-        var buyTutorial = new Tutorial({x: 600 + 412 / 2, y: 100 + 70 / 2, clicks: 1, text: "Klikni!"})
+        var buyTutorial = new Tutorial({x: 600 + 412 / 2, y: 100 + 70 / 2, text: "Klikni!"})
         tutorials.push(buyTutorial);
 
-        var endTutorial = new Tutorial({x: 1000, y: 1000, clicks: 1, text: ""})
+        var endTutorial = new Tutorial({x: 1000, y: 1000, text: ""})
         tutorials.push(endTutorial);
 
         // SHOW ICONS
@@ -218,7 +218,7 @@
             if (totaleme == 25) {
                 tutorial++
             }
-            else if (pickLevel == 2) {
+            else if (pickLevel == 2 && tutorial == 1) {
                 tutorial++
             }
         })
@@ -253,6 +253,29 @@
             }
         }
 
+        // CREATE A COOKIE
+        function setCookie(name, value) {
+            var date = new Date();
+            date.setDate(date.getDate() + 1)
+            document.cookie = name + "=" + (value || "");
+        }
+
+        // GET COOKIE (thanks to Jonathan Camenisch on StackOverflow)
+        function getCookie(name) {
+            const regex = new RegExp(`(^| )${name}=([^;]+)`)
+            const match = document.cookie.match(regex)
+            if (match) {
+                return match[2]
+            }
+        }
+
+        // REFRESH FAILSAVE
+        setInterval(() => {
+            var savedData = [eme, totaleme, oreLevel, pickLevel, childMiners, villMiners, tutorial];
+            var JSONsavedData = JSON.stringify(savedData)
+            setCookie("save", JSONsavedData) 
+        }, 1000);
+
         function formatEmerald(eme) {
             if (eme < 1e3) return eme;
             if (eme >= 1e3 && eme < 1e6) return +(eme / 1e3).toFixed(1) + "K";
@@ -264,6 +287,20 @@
         window.onload = (event) => {
             const tutorialModal = new bootstrap.Modal("#tutorial")
             tutorialModal.show()
+
+            var JSONcookie = getCookie("save")
+            console.log(JSONcookie)
+            if (JSONcookie) {
+                var cookie = JSON.parse(JSONcookie)
+
+                eme = cookie[0];
+                totaleme = cookie[1];
+                oreLevel = cookie[2];
+                pickLevel = cookie[3];
+                childMiners = cookie[4];
+                villMiners = cookie[5];
+                tutorial = 0;
+            }   
         };
     </script>
 </body>

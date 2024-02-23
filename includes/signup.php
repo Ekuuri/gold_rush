@@ -20,10 +20,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["invalidEmail"] = "Neplatná e-mailová adresa!";
         }
         if (isUsernameTaken($db, $username)) {
-            $errors["usernameTaken"] = "Uživelské jméno je již zabrané!";
+            $errors["usernameTaken"] = "Uživatelské jméno je již zabrané!";
         }
         if (isUsernameTooLong($username)) {
-            $errors["usernameTooLong"] = "Uživelské jméno je příliš dlouhé!";
+            $errors["usernameTooLong"] = "Uživatelské jméno je příliš dlouhé! Pouze 12 znaků!";
         }
         if (isEmailRegistered($db, $email)) {
             $errors["emailTaken"] = "E-mailová adresa je již zaregistrovaná!";
