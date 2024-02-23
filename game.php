@@ -60,11 +60,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Cílem hry je získat, co nejvíc měny (ukázána vedle zeleného drahokamu).</p>
+                    <p>Cílem hry je získat co nejvíc měny (ukázána vedle zeleného drahokamu).</p>
                     <p>Kliknutím (levým myšítkem) kdekoli, krom menu na právé straně obrazovky, vytěžíte rudu na obrázku a získáte měnu.</p>
                     <p>Kliknutím na jedno ze žlutých tlačítek si zakoupíte zmíněný předmět na tlačítku.</p>
                     <p>Vylepšení krumpáče a rudy přímo ovlivňují kolik měny získáte každým kliknutím rudy.</p>
                     <p>Zaměstnáním vesničanů začnete získávat měnu automaticky každých několik sekund (indikováno zvukovým efektem).</p>
+                    <p>Kliknutím kdekoli mimo toto okno nebo přímo na tlačítko Zavřít se spustí názorný návod v samotné hře.</p>
+                    <p>Tento tutoriál můžete kdykoli znovu otevřít modrým tlačítkem Tutorial na právé straně obrazovky.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>
@@ -80,6 +82,7 @@
     <script src="game/ore.js"></script>
     <script src="game/pick.js"></script>
     <script src="game/emerald.js"></script>
+    <script src="game/tutorial.js"></script>
     <script src="game/shop.js"></script>
 
     <script>
@@ -108,7 +111,7 @@
         // villager counter
         var villMiners = 0;
 
-        // upgrade buttons
+        // UPGRADE BUTTONS
         var buttons = [];
 
         var pickaxeUpgrade = new Shop({x: 600, y: 100, cost: 25, text: "Vylepšit krumpáč!"});
@@ -145,6 +148,19 @@
         }
         buttons.push(villBuy); 
 
+        // tutorial arrows
+        var tutorial = 0;
+        var tutorials = [];
+
+        var clickTutorial = new Tutorial({x: 578 / 2, y: 579 / 2, clicks: 25, text: "Klikej!"})
+        tutorials.push(clickTutorial);
+
+        var buyTutorial = new Tutorial({x: 600 + 412 / 2, y: 100 + 70 / 2, clicks: 1, text: "Klikni!"})
+        tutorials.push(buyTutorial);
+
+        var endTutorial = new Tutorial({x: 1000, y: 1000, clicks: 1, text: ""})
+        tutorials.push(endTutorial);
+
         // SHOW ICONS
         function animate() {
             requestAnimationFrame(animate)
@@ -174,11 +190,15 @@
             // SHOP BUTTONS
             buttons.forEach(button => button.draw(c));
 
+            // TUTORIAL ARROWS
+            tutorials[tutorial].draw()
+
             // aktualizace skore
             document.getElementById("emeralds").setAttribute('value', totaleme);
         }
         animate()
 
+        // CLICKING
         c.addEventListener("click", (e) => {
             let x = e.pageX - (c.clientLeft + c.offsetLeft);
             let y = e.pageY - (c.clientTop + c.offsetTop);
@@ -192,10 +212,18 @@
             if (x <= 576) {
                 pick.mine(ore.oreLevel)
                 var mine = new Audio("img/mining_sound.mp3")
-                if (!isMuted)mine.play()
+                if (!isMuted) mine.play()
+            }
+
+            if (totaleme == 25) {
+                tutorial++
+            }
+            else if (pickLevel == 2) {
+                tutorial++
             }
         })
 
+        // AUTOMATIC CLICKS -- villagers
         setInterval(() => {
             if(childMiners > 0) {
                 eme += 100 * 3 ** childMiners
@@ -215,6 +243,7 @@
             }
         }, 7600);
 
+        // MUTE SOUNDS FUNCTION
         function mute() {
             if (isMuted) {
                 isMuted = false;
@@ -231,6 +260,11 @@
             if (eme >= 1e9 && eme < 1e12) return +(eme / 1e9).toFixed(1) + "B";
             if (eme >= 1e12) return +(eme / 1e12).toFixed(1) + "T";
         }
+
+        window.onload = (event) => {
+            const tutorialModal = new bootstrap.Modal("#tutorial")
+            tutorialModal.show()
+        };
     </script>
 </body>
 </html>
