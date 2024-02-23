@@ -299,7 +299,7 @@
                 pickLevel = cookie[3];
                 childMiners = cookie[4];
                 villMiners = cookie[5];
-                tutorial = 0;
+                tutorial = cookie[6];
             }   
         };
     </script>
