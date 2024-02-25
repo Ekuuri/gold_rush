@@ -3,6 +3,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $repeatpassword = $_POST["repeatpassword"];
 
     try {
         require_once("config_db.php");
@@ -27,6 +28,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         if (isEmailRegistered($db, $email)) {
             $errors["emailTaken"] = "E-mailová adresa je již zaregistrovaná!";
+        }
+        if (isPasswordNotMatching($password, $repeatpassword)) {
+            $errors["passwordNotMatching"] = "Hesla jsou neshodná!";
         }
 
         require_once("config_session.php");

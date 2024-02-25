@@ -289,7 +289,6 @@
             tutorialModal.show()
 
             var JSONcookie = getCookie("save")
-            console.log(JSONcookie)
             if (JSONcookie) {
                 var cookie = JSON.parse(JSONcookie)
 

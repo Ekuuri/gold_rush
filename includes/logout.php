@@ -1,7 +1,7 @@
 <?php
 require_once("config_db.php");
+require_once("config_session.php");
 require_once("logout_model.php");
-session_start();
 
 $id = $_SESSION["userId"];
 $score = $_POST["score"];

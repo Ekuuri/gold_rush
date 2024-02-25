@@ -64,20 +64,20 @@
             </div>
 
             
-            <div class="row mt-3">
+            <!--<div class="row mt-3">
                 <div class="col d-flex justify-content-end">
-                    <!-- Zachování přihlášení při znovuotevření-->
+                     Zachování přihlášení při znovuotevření
                     <div class="form-check">
                         <input type="checkbox" id="rememberMe" class="form-check-input">
                         <label for="rememberMe" class="form-check-label">Zapamatovat si mě</label>
                     </div>
                 </div>
     
-                <!-- Přesun na zapomenutí hesla-->
+                 Přesun na zapomenutí hesla
                 <div class="col">
                     <a href="#" onclick="toggleResetPass()" class="text-decoration-none text-info">Zapomněli jste heslo?</a>
                 </div> 
-            </div>
+            </div>-->
             
             <!-- Přihlásení -->
             <div class="text-center pt-3">
@@ -109,7 +109,7 @@
             </div>   
         </form>
         
-        <!-- Založení účtu -->
+        <!-- Založení účtu // Registrace -->
 
         <form action="includes/signup.php" method="post" id="register" class="container bg-dark border border-light text-light d-none">
             <h1 class="m-3 text-center">Nový uživatel</h1>
@@ -126,7 +126,7 @@
 
             <!-- Heslo znovu -->
             <div class="row justify-content-center p-1">
-                <input type="password" id="userRepeatPass" class="form-control w-50" placeholder="Heslo znovu" autofocus>
+                <input type="password" id="userRepeatPass" name="repeatpassword" class="form-control w-50" placeholder="Heslo znovu" autofocus>
             </div>
 
             <div class="container text-center">

@@ -34,10 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
         }
 
-        $newSessionId = session_create_id();
-        $sessionId = $newSessionId . "_" . $result["userId"];
-        session_id($sessionId);
-
         $_SESSION["userId"] = $result["userId"];
         $_SESSION["userUsername"] = htmlspecialchars($result["userName"]);
 

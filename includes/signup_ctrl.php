@@ -47,6 +47,15 @@ function isEmailRegistered(object $db, string $email) {
     }
 }
 
+function isPasswordNotMatching(string $password, string $repeatpassword) {
+    if ($password != $repeatpassword) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function createUser(object $db, string $username, string $email, string $password) {
     setUser($db, $username, $email, $password);
 }

@@ -17,7 +17,7 @@ function checkSignUpErrors() {
         unset($_SESSION["errorsSignUp"]);
     } 
     else if (isset($_GET["signup"]) && $_GET["signup"] === "success") {
-        echo '<br><div class="card mx-auto" style="width: 30rem;"><div class="card-body"><p class="card-text">Úspěšné příhlášení!</p></div></div>';
+        echo '<br><div class="card mx-auto" style="width: 30rem;"><div class="card-body"><p class="card-text">Úspěšná registrace!</p></div></div>';
     } 
     else if (isset($_GET["signup"]) && $_GET["signup"] === "failed") {
         echo "<script> toggleRegister(); </script>";

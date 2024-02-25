@@ -4,7 +4,7 @@ ini_set("session.use_only_cookies", 1);
 ini_set("session.use_strict_mode", 1);
 
 session_set_cookie_params([
-    "lifetime" => 1800,
+    "lifetime" => 0,
     "domain" => "localhost",
     "path" => "/",
     "secure" => true,
@@ -12,40 +12,3 @@ session_set_cookie_params([
 ]);
 
 session_start();
-
-if (isset($_SESSION["userId"])) {
-    if (!isset($_SESSION["last_regen"])) {
-        regen_session_id_loggedin();
-    }
-    else {
-        $interval = 60 * 30;
-        if (time() - $_SESSION["last_regen"] >= $interval) {
-            regen_session_id_loggedin();
-        }
-    }
-}
-else {
-    if (!isset($_SESSION["last_regen"])) {
-        regen_session_id();
-    }
-    else {
-        $interval = 60 * 30;
-        if (time() - $_SESSION["last_regen"] >= $interval) {
-            regen_session_id();
-        }
-    }
-}
-
-function regen_session_id_loggedin() {
-    session_regenerate_id();
-    $_SESSION["last_regen"] = time();
-
-    $userId = $_SESSION["userId"];
-    $newSessionId = session_create_id();
-    $sessionId = $newSessionId . "_" . $userId;
-    session_id($sessionId);
-}
-function regen_session_id() {
-    session_regenerate_id();
-    $_SESSION["last_regen"] = time();
-}
