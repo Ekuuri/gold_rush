@@ -11,7 +11,7 @@ function isInputEmpty(string $username, string $password) {
     }
 }
 
-function isUsernameWrong(bool|array $result) {
+function isUsernameWrong($result) { //bool|array in PHP 8.1
     if (!$result) {
         return true;
     }
