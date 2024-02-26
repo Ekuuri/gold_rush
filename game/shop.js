@@ -2,7 +2,7 @@ class Shop {
     constructor({x, y, text, cost}) {
         this.x = x;
         this.y = y + 5;
-        this.text = text;
+        this.text = text + " - " + formatEmerald(this.cost);
         this.cost = cost;
 
         this.fillColor = "#FFC300";
@@ -23,7 +23,7 @@ class Shop {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.font = '25px "Minecraftia", "VT323"';
-        ctx.fillText(this.text + " - " + formatEmerald(this.cost), this.x + this.width / 2, this.y + this.height / 2, this.width);
+        ctx.fillText(this.text, this.x + this.width / 2, this.y + this.height / 2, this.width);
     }
 
     inButton(mouseX, mouseY) {
