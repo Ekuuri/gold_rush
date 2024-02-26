@@ -292,6 +292,19 @@
             if (JSONcookie) {
                 var cookie = JSON.parse(JSONcookie)
 
+                for (i=0; i < cookie[2]; i++) {
+                    pickaxeUpgrade.onClick();
+                }
+                for (i=0; i < cookie[3]; i++) {
+                    oreUpgrade.onClick();
+                }
+                for (i=0; i < cookie[4]; i++) {
+                    childBuy.onClick();
+                }
+                for (i=0; i < cookie[5]; i++) {
+                    villBuy.onClick();
+                }
+
                 eme = cookie[0];
                 totaleme = cookie[1];
                 oreLevel = cookie[2];
